@@ -1,0 +1,6 @@
+com/caroux/Produit.class
+com/caroux/Facture.class
+com/caroux/AppliCreationFacture.class
+com/caroux/FenetreNouvelleFacture.class
+com/caroux/ControleurAjouterProduit.class
+com/caroux/ControleurEnregistrerFature.class

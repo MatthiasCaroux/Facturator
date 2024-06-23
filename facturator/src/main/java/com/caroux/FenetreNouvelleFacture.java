@@ -17,6 +17,7 @@ public class FenetreNouvelleFacture extends BorderPane {
     private VBox lesProduits;
     private List<Produit> produits;
     private Label totalLabel;
+    private TextField textField3;
 
     public FenetreNouvelleFacture() {
         this.produits = new ArrayList<>();
@@ -24,11 +25,15 @@ public class FenetreNouvelleFacture extends BorderPane {
         this.totalLabel = new Label("Total: 0.00€");
         this.totalLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
         this.setStyle("-fx-background-color: #5da6e8;");
-        this.setTop(this.getHBox());
-        this.setCenter(this.getVbox());
+        this.setTop(this.topBorderPane());
+        this.setCenter(this.centreBorderPane());
     }
 
-    public HBox getHBox() {
+    public VBox topBorderPane() {
+        VBox vbox = new VBox();
+        vbox.setSpacing(10);
+        vbox.setPadding(new Insets(20));
+        vbox.setAlignment(Pos.CENTER);
         HBox hBox = new HBox();
         hBox.setSpacing(10);
         hBox.setPadding(new Insets(20));
@@ -50,10 +55,19 @@ public class FenetreNouvelleFacture extends BorderPane {
         button.setOnAction(new ControleurAjouterProduit(this, textField, textField2));
 
         hBox.getChildren().addAll(textField, textField2, button);
-        return hBox;
+
+        this.textField3 = new TextField();
+        textField3.setPromptText("Nom du Client");
+        textField3.setStyle("-fx-background-color: white; -fx-background-radius: 15px; -fx-font-size: 16px;");
+        textField3.setPrefWidth(300);
+
+
+        vbox.getChildren().addAll(hBox, textField3);
+
+        return vbox;
     }
 
-    public VBox getVbox() {
+    public VBox centreBorderPane() {
         VBox vbox = new VBox();
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(20));
@@ -106,5 +120,9 @@ public class FenetreNouvelleFacture extends BorderPane {
 
     public List<Produit> getProduits() {
         return produits;
+    }
+
+    public String getNomClient() {
+        return this.textField3.getText();
     }
 }
